@@ -1,0 +1,11 @@
+version: '3'
+services:
+  web: #name web here is arbitrary
+    build:
+      context: . #this tells where to look for the Dockerfile.dev
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/node/app/node_modules #we need this line because locally we deleted the node_modules folder, so this tells docker dont look for the node_modules folder on the local machine
+      - .:/home/node/app #this tells docker to use THIS folder (.) as a reference when the container access the files in /home/node/app
